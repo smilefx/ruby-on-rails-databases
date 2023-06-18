@@ -1,0 +1,127 @@
+<body class="bg--100">
+    <%= render "layouts/header", logo: "dark", domain: domain, type: type, s_type: s_type %>
+
+    <div class="content">
+        <div class="card max--600">
+            <div class="card__info button--icon bg--200 color--800">
+                <i class="material-icons-round">school</i>
+            </div>
+            <div class="card__body color--800">
+                <div class="card__title" id="courseName">
+                    <% if course.name.blank? %>
+                        Neuer Kurs
+                    <% else %>
+                        <%= course.name %>
+                    <% end %>
+                </div>
+                <div class="card__subtitle">
+                    <% if type == "new" %>
+                        Neuen Kurs anlegen
+                    <% else %>
+                        Kurs bearbeiten
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        
+        <section class="grid--new--course">
+            <%= form_with model: course do |form| %>
+                <div class="span--2">
+                    <div class="form__label" data-error=<%= course.errors[:name].length > 0%> title="<%= course.errors[:name].join(" / ")%>">
+                        <p>Kursname *</p>
+                        <i class="material-icons-round color--400">warning</i>
+                    </div>
+                    <%= form.text_field :name, placeholder: "Kursname", :oninput => "changeDisplayName(this.value)" %>
+                </div>
+
+                <div>
+                    <div class="form__label" data-error=<%= course.errors[:semester].length > 0%> title="<%= course.errors[:semester].join(" / ")%>">
+                        <p>Fachsemester *</p>
+                        <i class="material-icons-round color--400">warning</i>
+                    </div>
+                    <%= form.number_field :semester, placeholder: "Fachsemester" %>
+                </div>
+
+                <div>
+                    <div class="form__label" data-error=<%= course.errors[:year].length > 0%> title="<%= course.errors[:year].join(" / ")%>">
+                        <p>Semester *</p>
+                        <i class="material-icons-round color--400">warning</i>
+                    </div>
+                    <div>
+                        <% if course.year.blank? %>
+                            <%= form.number_field :year, placeholder: "Jahr", max: "2500", min: "1000", value: Date.today.year %>
+                        <% else %>
+                            <%= form.number_field :year, placeholder: "Jahr", max: "2500", min: "1000" %>
+                        <% end %>
+                        <div class="period__switch">
+                            <% if course.period.blank? || course.period == 0 %>
+                                <i class="material-icons-round color--800" title="Sommersemester" data-state="active" id="period0" onclick="switchPeriod(0)">light_mode</i>
+                                <i class="material-icons-round color--800" title="Wintersemester" data-state="inactive" id="period1" onclick="switchPeriod(1)">ac_unit</i>
+                            <% else %>
+                                <i class="material-icons-round color--800" title="Sommersemester" data-state="inactive" id="period0" onclick="switchPeriod(0)">light_mode</i>
+                                <i class="material-icons-round color--800" title="Wintersemester" data-state="active" id="period1" onclick="switchPeriod(1)">ac_unit</i>
+                            <% end %>
+                        </div>
+                    </div>
+                    <% if course.period.blank? || course.period == 0 %>
+                        <%= form.hidden_field :period, value: "0" %>
+                    <% else %>
+                        <%= form.hidden_field :period, value: "1" %>
+                    <% end %>
+                </div>
+
+                <div>
+                    <div class="form__label" data-error=<%= course.errors[:short_name].length > 0%> title="<%= course.errors[:short_name].join(" / ")%>">
+                        <p>Veranstaltungskürzel *</p>
+                        <i class="material-icons-round color--400">warning</i>
+                    </div>
+                    <%= form.text_field :short_name, maxLength: "10", placeholder: "Kürzel" %>
+                </div>
+
+                <div>
+                    <div class="form__label" data-error=<%= course.errors[:faculty].length > 0%> title="<%= course.errors[:faculty].join(" / ")%>">
+                        <p>Fakultät</p>
+                        <i class="material-icons-round color--400">warning</i>
+                    </div>
+                    <%= form.text_field :faculty, placeholder: "Fakultät" %>
+                </div>
+
+                <div>
+                    <div class="form__label" data-error=<%= course.errors[:lecturer].length > 0%> title="<%= course.errors[:lecturer].join(" / ")%>">
+                        <p>Dozent/-in</p>
+                        <i class="material-icons-round color--400">warning</i>
+                    </div>
+                    <%= form.text_field :lecturer, placeholder: "Dozent/-in" %>
+                </div>
+
+                <div>
+                    <div class="form__label" data-error=<%= course.errors[:room].length > 0%> title="<%= course.errors[:room].join(" / ")%>">
+                        <p>Raum</p>
+                        <i class="material-icons-round color--400">warning</i>
+                    </div>
+                    <%= form.text_field :room, placeholder: "Raum" %>
+                </div>
+            <% end %>
+        </section>
+    </div>
+
+    <script>
+        function switchPeriod(num) {
+            document.getElementById("period" + num).dataset.state = "active";
+            document.getElementById("period" + (num == 1 ? 0 : 1)).dataset.state = "inactive";
+            document.getElementById("course_period").value = num;
+        }
+
+        function changeDisplayName(name) {
+            if(name.trim() != "") {
+                document.getElementById("courseName").innerHTML = name;
+            } else {
+                document.getElementById("courseName").innerHTML = "Neuer Kurs";
+            }
+        }
+
+        function submitForm() {
+            document.querySelectorAll("form")[0].submit();
+        }
+    </script>
+</body>

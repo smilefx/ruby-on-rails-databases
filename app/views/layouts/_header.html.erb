@@ -27,13 +27,31 @@
         <% elsif domain == "detail" %>
             <!-- Course / Event Header -->
             <div class="header__toolbar__button button--icon color--700 bg--400">
-                <i class="material-icons-round">delete_forever</i>
+                <% if s_type == "course" %>
+                    <%= link_to "delete_forever", course_path(@course), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Möchtest du diesen Kurs wirklich löschen?"
+                    }, :class => "material-icons-round"%>
+                <% elsif s_type == "event" %>
+                    <%= link_to "delete_forever", course_event_path(@course, event), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Möchtest du diesen Termin wirklich löschen?"
+                    }, :class => "material-icons-round"%>
+                <% end %>
             </div>
             <div class="header__toolbar__button button--icon color--200 bg--800">
-                <i class="material-icons-round">edit</i>
+                <% if s_type == "course" %>
+                    <%= link_to "edit", edit_course_path, :class => "material-icons-round" %>
+                <% elsif s_type == "event" %>
+                    <%= link_to "edit", edit_course_event_path(event.course, event), :class => "material-icons-round" %>
+                <% end %>
             </div>
             <div class="header__toolbar__button button--icon color--200 bg--800">
-                <%= link_to "close", "/", :class => "material-icons-round" %>
+                <% if s_type == "course" %>
+                    <%= link_to "close", "/", :class => "material-icons-round" %>
+                <% elsif s_type == "event" %>
+                    <%= link_to "close", course_path(@course), :class => "material-icons-round" %>
+                <% end %>
             </div>
 
         <% elsif domain == "modify" %>
@@ -42,7 +60,19 @@
                 <i class="material-icons-round" onclick="submitForm()">save</i>
             </div>
             <div class="header__toolbar__button button--icon color--800 bg--200">
-                <%= link_to "close", "/", :class => "material-icons-round" %>
+                <% if type == "new" %>
+                    <% if s_type == "course" %>
+                        <%= link_to "close", "/", :class => "material-icons-round" %>
+                    <% elsif s_type == "event" %>
+                        <%= link_to "close", course_path(@event.course), :class => "material-icons-round" %>
+                    <% end %>
+                <% elsif type == "edit" %>
+                    <% if s_type == "course" %>
+                        <%= link_to "close", course_path, :class => "material-icons-round" %>
+                    <% elsif s_type == "event" %>
+                        <%= link_to "close", course_event_path(@event.course, @event), :class => "material-icons-round" %>
+                    <% end %>
+                <% end %>
             </div>
 
         <% end %>

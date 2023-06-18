@@ -1,7 +1,7 @@
-<div class="event bg--<%= primary%> color--<%= secondary%>">
+<div class="event bg--<%= primary%> color--<%= secondary%>" onclick="window.location.href = '<%= course_event_path(event.course, event) %>';">
     <div class="event__inner">
-        <h3 class="event__title color--<%= secondary%>">23. Juni 2023</h3>
-        <p class="event__subtitle color--<%= secondary%>">Abgabe - Arbeitsblatt 9</p>
+        <h3 class="event__title color--<%= secondary%>"><%= event.named_date %></h3>
+        <p class="event__subtitle color--<%= secondary%>"><%= event.title %></p>
     </div>
-    <b class="color--<%= accent%>">HM3</b>
+    <b class="color--<%= accent%>"><%= event.course.short_name %></b>
 </div>

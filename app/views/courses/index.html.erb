@@ -25,7 +25,9 @@
             <p>Meine Termine</p>
         </span>
         <section class="grid--events">
-            <%= render "layouts/partials/event", primary: "700", secondary: "200", accent: "400" %>
+            <% @events.each do |event| %>
+                <%= render "layouts/partials/event", primary: "700", secondary: "200", accent: "400", event: event %>
+            <% end %>
         </section>
     </div>
 </body>

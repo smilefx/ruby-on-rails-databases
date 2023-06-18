@@ -153,6 +153,10 @@ $color-100: #e8e0da;
     opacity: 1 !important;
 }
 
+.gap--10 {
+    gap: 10px !important;
+}
+
 
 /* Section - Main */
 
@@ -301,10 +305,20 @@ header {
     align-items: center;
     cursor: default;
     pointer-events: none;
+    position: relative;
 
     i.material-icons-round {
         font-size: 35px;
     }
+}
+
+.card__info .course__todo {
+    left: -10px;
+    top: -11px;
+    right: unset;
+    bottom: unset;
+    min-width: 30px;
+    height: 30px;
 }
 
 .card__body {
@@ -321,7 +335,6 @@ header {
     font-size: 35px;
     overflow: hidden;
     text-overflow: ellipsis;
-    overflow: hidden;
     padding-bottom: 4px;
     margin-bottom: -4px;
 }
@@ -362,6 +375,56 @@ header {
     }
 }
 
+
+
+.info__card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    width: 100%;
+    height: 90px;
+    padding: 0px 35px;
+    border-radius: 20px;
+
+    i {
+        font-size: 35px;
+    }
+}
+
+.info__card__details {
+    width: calc(100% - 60px);
+
+    h3 {
+        font-size: 24px;
+        font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-bottom: 5px;
+        max-width: 100%;
+    }
+
+    .course__title h3 {
+        max-width: 75%;
+    }
+
+    p {
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+    b {
+        padding-bottom: 5px;
+    }
+}
+
+
+
+
+
+
+
 .grid--courses {
     display: grid;
     grid-template-columns: repeat(2, 600px);
@@ -379,4 +442,24 @@ header {
     width: 600px;
     margin: 0 auto;
     margin-top: 75px
+}
+
+.grid--new--event {
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 75px
+}
+
+.grid--info--course {
+    display: grid;
+    grid-template-columns: repeat(3, 390px);
+    gap: 30px;
+    margin-bottom: 75px;
+}
+
+.grid--info--event {
+    display: grid;
+    grid-template-columns: repeat(4, 285px);
+    gap: 30px;
+    margin-bottom: 75px;
 }

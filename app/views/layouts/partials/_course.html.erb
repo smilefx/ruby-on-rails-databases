@@ -6,14 +6,20 @@
         </div>
         <div class="course__tags">
             <div class="course__tag bg--<%= secondary%> color--<%= primary%>">
-                <%= course.period == 0 ? "SoSe" : "WiSe" %> <%= course.year %>
+                <% if course.period == 0 %>
+                    SoSe <%= course.year %>
+                <% else %>
+                    WiSe <%= course.year %>/<%= (course.year + 1).to_s()[2,2] %>
+                <% end %>
             </div>
             <div class="course__tag bg--<%= secondary%> color--<%= primary%>">
                 <%= course.semester %>. Semester
             </div>
         </div>
     </div>
-    <div class="course__todo bg--<%= accent%> color--<%= primary%>">
-        <%= course.events.length %>
-    </div>
+    <%if course.upcoming.length > 0 %>
+        <div class="course__todo bg--<%= accent%> color--<%= primary%>">
+            <%= course.upcoming.length %>
+        </div>
+    <% end %>
 </div>

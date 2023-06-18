@@ -12,7 +12,7 @@ $color-100: #e8e0da;
     margin: 0 auto;
 }
 
-.grid--new--course form {
+.grid--new--course form, .grid--new--event form {
     display: grid;
     grid-template-columns: repeat(2, 285px);
     gap: 30px;
@@ -25,7 +25,7 @@ $color-100: #e8e0da;
     }
 }
 
-.grid--new--course form input {
+.grid--new--course input, .grid--new--event input {
     -webkit-appearance: none;
     appearance: none;
     text-indent: 35px;
@@ -73,10 +73,6 @@ $color-100: #e8e0da;
     }
 }
 
-.span--2 {
-    grid-column: 1 / span 2;
-}
-
 .form__label {
     display: flex;
     align-items: center;
@@ -98,6 +94,7 @@ $color-100: #e8e0da;
     &[data-error="true"] {
         i {
             display: flex;
+            cursor: help;
         }
     }
 }
@@ -128,5 +125,53 @@ $color-100: #e8e0da;
 
     i:last-of-type {
         padding-left: 4px;
+    }
+}
+
+.form__status__wrapper {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.form__status__button {
+    width: 100%;
+    height: 60px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-family: "Titillium Web", sans-serif;
+    font-weight: 600;
+    background-color: $color-200;
+    transition: .3s ease;
+
+    p {
+        transition: .3s ease;
+        opacity: 0.25;
+        color: $color-800;
+    }
+
+    &[data-state="active"] {
+        background-color: $color-400;
+
+        p {
+            color: $color-100;
+            opacity: 1;
+        }
+    }
+
+    &:hover {
+        background-color: $color-400;
+
+        p {
+            color: $color-100;
+            opacity: 1;
+        }
     }
 }

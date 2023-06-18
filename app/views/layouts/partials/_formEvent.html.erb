@@ -1,0 +1,88 @@
+<body class="bg--100">
+    <%= render "layouts/header", logo: "dark", domain: domain, type: type, s_type: s_type %>
+
+    <div class="content">
+        <div class="card max--600">
+            <div class="card__info button--icon bg--200 color--800">
+                <i class="material-icons-round">calendar_month</i>
+            </div>
+            <div class="card__body color--800">
+                <div class="card__title" id="courseName">
+                    <%= course.name %>
+                </div>
+                <div class="card__subtitle">
+                    <% if type == "new" %>
+                        Neuen Termin erstellen
+                    <% else %>
+                        Termin bearbeiten
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        
+        <section class="grid--new--event">
+            <%= form_with model: event, url: (type == "new" ? "/courses/#{course.id}/events" : "/courses/#{course.id}/events/#{event.id}") do |form| %>
+                <div class="span--2">
+                    <div class="form__label" data-error=<%= event.errors[:title].length > 0%> title="<%= event.errors[:title].join(" / ")%>">
+                        <p>Titel *</p>
+                        <i class="material-icons-round color--400">warning</i>
+                    </div>
+                    <%= form.text_field :title, placeholder: "Titel", value: event.title%>
+                </div>
+
+                <div class="span--2">
+                    <div class="form__label" data-error=<%= event.errors[:status].length > 0%> title="<%= event.errors[:status].join(" / ")%>">
+                        <p>Status *</p>
+                        <i class="material-icons-round color--400">warning</i>
+                    </div>
+                    <div class="form__status__wrapper">
+                        <div class="form__status__button" data-state="<%= (event.status.blank? || event.status == "Ausstehend") ? "active" : "inactive" %>" onclick="changeStatus(this.innerText)"><p>Ausstehend</p></div>
+                        <div class="form__status__button" data-state="<%= (!event.status.blank? && event.status == "In Arbeit") ? "active" : "inactive" %>" onclick="changeStatus(this.innerText)"><p>In Arbeit</p></div>
+                        <div class="form__status__button" data-state="<%= (!event.status.blank? && event.status == "Erledigt") ? "active" : "inactive" %>" onclick="changeStatus(this.innerText)"><p>Erledigt</p></div>
+                    </div>
+                    <% if event.status.blank? %>
+                        <%= form.hidden_field :status, placeholder: "Status", value: "Ausstehend" %>
+                    <% else %>
+                        <%= form.hidden_field :status, placeholder: "Status", value: event.status %>
+                    <% end %>
+                </div>
+
+                <div>
+                    <div class="form__label" data-error=<%= event.errors[:date].length > 0%> title="<%= event.errors[:date].join(" / ")%>">
+                        <p>Datum *</p>
+                        <i class="material-icons-round color--400">warning</i>
+                    </div>
+                    <%= form.date_field :date, value: event.date %>
+                </div>
+
+                <div>
+                    <div class="form__label" data-error=<%= event.errors[:time].length > 0%> title="<%= event.errors[:time].join(" / ")%>">
+                        <p>Uhrzeit *</p>
+                        <i class="material-icons-round color--400">warning</i>
+                    </div>
+                    <%= form.time_field :time, value: event.time.present? ? event.time.to_fs(:time) : "" %>
+                </div>
+            <% end %>
+        </section>
+    </div>
+
+    <script>
+        function submitForm() {
+            document.querySelectorAll("form")[0].submit();
+        }
+
+        function changeStatus(status) {
+            document.querySelectorAll(".form__status__button").forEach((button) => {
+                button.setAttribute("data-state", "inactive");
+            });
+
+            document.querySelectorAll(".form__status__button").forEach((button) => {
+                if (button.innerText == status) {
+                    button.setAttribute("data-state", "active");
+                }
+            });
+
+            document.getElementById("event_status").value = status;
+        }
+    </script>
+</body>

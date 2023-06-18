@@ -1,2 +1,53 @@
-<h1>Events#show</h1>
-<p>Find me in app/views/events/show.html.erb</p>
+<body class="bg--700">
+    <%= render "layouts/header", logo: "light", domain: @domain, s_type: "event", event: @event %>
+
+    <div class="content">
+        <div class="card">
+            <div class="card__info button--icon bg--800 color--200">
+                <i class="material-icons-round">calendar_month</i>
+            </div>
+            <div class="card__body color--200">
+                <div class="card__title"><%= @event.title %></div>
+                <div class="card__subtitle"><%= @event.named_date_day %></div>
+            </div>
+        </div>
+
+        <span class="section__title">
+            <i class="material-icons-round">feed</i>
+            <p>Informationen</p>
+        </span>
+        <section class="grid--info--event">
+            <div class="info__card bg--800">
+                <% if @event.status == "Ausstehend" %>
+                    <i class="material-icons-round color--200">hourglass_bottom</i>
+                <% elsif @event.status == "In Arbeit" %>
+                    <i class="material-icons-round color--200">loop</i>
+                <% elsif @event.status == "Erledigt" %>
+                    <i class="material-icons-round color--200">done_all</i>
+                <% end %>
+                <div class="info__card__details">
+                    <h3 class="color--200"><%= @event.status %></h3>
+                    <p class="color--400">Status</p>
+                </div>
+            </div>
+            <div class="info__card bg--800">
+                <i class="material-icons-round color--200">schedule</i>
+                <div class="info__card__details">
+                    <h3 class="color--200"><%= @event.named_time %></h3>
+                    <p class="color--400">Uhrzeit</p>
+                </div>
+            </div>
+            <div class="info__card info__link bg--800" onclick="window.location.href = '<%= course_path(@event.course) %>';">
+                <i class="material-icons-round color--200">school</i>
+                <i class="material-icons-round info__card__link color--200">double_arrow</i>
+                <div class="info__card__details">
+                    <div class="course__title">
+                        <h3 class="color--200"><%= @event.course.name %></h3>
+                        <b class="color--400"><%= @event.course.short_name %></b>
+                    </div>
+                    <p class="color--400">Kurs</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
