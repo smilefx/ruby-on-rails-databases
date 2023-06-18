@@ -1,0 +1,382 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+.material-icons-round {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+$color-800: #08171c;
+$color-700: #0c2027;
+$color-600: #1a3139;
+$color-500: #3d737f;
+$color-400: #548e99;
+$color-300: #afdce9;
+$color-200: #d0c7c0;
+$color-100: #e8e0da;
+
+.color--100 {
+    color: $color-100;
+}
+
+.color--200 {
+    color: $color-200;
+}
+
+.color--300 {
+    color: $color-300;
+}
+
+.color--400 {
+    color: $color-400;
+}
+
+.color--500 {
+    color: $color-500;
+}
+
+.color--600 {
+    color: $color-600;
+}
+
+.color--700 {
+    color: $color-700;
+}
+
+.color--800 {
+    color: $color-800;
+}
+
+
+.bg--100 {
+    background-color: $color-100;
+}
+
+.bg--200 {
+    background-color: $color-200;
+}
+
+.bg--300 {
+    background-color: $color-300;
+}
+
+.bg--400 {
+    background-color: $color-400;
+}
+
+.bg--500 {
+    background-color: $color-500;
+}
+
+.bg--600 {
+    background-color: $color-600;
+}
+
+.bg--700 {
+    background-color: $color-700;
+}
+
+.bg--800 {
+    background-color: $color-800;
+}
+
+.opacity--1 {
+    opacity: 1 !important;
+}
+
+
+/* Section - Main */
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-family: "Titillium Web", sans-serif;
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 50px;
+}
+
+.header__logo {
+    position: absolute;
+    left: 70px;
+}
+
+.header__toolbar {
+    display: flex;
+    gap: 30px;
+    position: absolute;
+    right: 70px;
+}
+
+.header__toolbar__button {
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        scale: 1.05;
+    }
+}
+
+.button--profile {
+    user-select: none;
+    -webkit-user-drag: none;
+    cursor: default;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: image-url('profile_image.jpg');
+
+    &:hover {
+        pointer-events: none;
+        scale: 1;
+    }
+}
+
+.button--icon .material-icons-round {
+    font-size: 28px;
+    padding: 16px;
+}
+
+.header__toolbar__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    button {
+        position: absolute;
+        padding: 18px;
+        right: 0px;
+        cursor: pointer;
+        opacity: 0.25;
+        transition: all 0.3s ease;
+        -webkit-appearance: none;
+        outline: none;
+        border: none;
+        background-color: transparent;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.header__toolbar__input {
+    -webkit-appearance: none;
+    appearance: none;
+    text-indent: 35px;
+    width: 375px;
+    height: 60px;
+    border-radius: 20px;
+    border: none;
+    padding: 0 65px 0px 0px;
+    color: $color-200;
+    font-size: 20px;
+    font-family: "Titillium Web", sans-serif;
+    font-weight: 600;
+
+    &:focus {
+        outline: none;
+        width: 375px;
+    }
+
+    &::placeholder {
+        color: $color-200;
+        opacity: 0.25;
+        font-family: "Titillium Web", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+    }
+
+    &::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+    }
+}
+
+.content {
+    margin: 0 auto;
+    margin-top: 165px;
+    width: 1230px;
+}
+
+.card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 60px;
+    width: 100%;
+    position: relative;
+}
+
+.card__info {
+    width: 75px;
+    height: 75px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+    pointer-events: none;
+
+    i.material-icons-round {
+        font-size: 35px;
+    }
+}
+
+.card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: -3px;
+    max-width: calc(100% - 100px);
+}
+
+.card__title {
+    max-width: 100%;
+    font-weight: 600;
+    font-size: 35px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-bottom: 4px;
+    margin-bottom: -4px;
+}
+
+.card__subtitle {
+    font-weight: 700;
+    font-size: 20px;
+    opacity: 0.5;
+    margin-left: 1px;
+}
+
+.section__title {
+    font-size: 24px;
+    font-weight: 700;
+    color: $color-200;
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin-bottom: 18px;
+    gap: 18px;
+
+    i {
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    .icon--additional {
+        position: absolute;
+        right: 0;
+        opacity: 0.25;
+        transition: .3s ease;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.grid--courses {
+    display: grid;
+    grid-template-columns: repeat(2, 600px);
+    gap: 30px;
+    margin-bottom: 75px;
+}
+
+.grid--events {
+    display: grid;
+    grid-template-columns: repeat(4, 285px);
+    gap: 30px;
+}
+
+.grid--new--course {
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 75px
+}

@@ -1,0 +1,31 @@
+<body class="bg--800">
+    <%= render "layouts/header", logo: "light", domain: @domain %>
+
+    <div class="content">
+        <div class="card">
+            <div class="card__info button--profile"></div>
+            <div class="card__body color--200">
+                <div class="card__title">Maxim A.</div>
+                <div class="card__subtitle">Willkommen zurück!</div>
+            </div>
+        </div>
+
+        <span class="section__title">
+            <i class="material-icons-round">school</i>
+            <p>Meine Kurse</p>
+            <%= link_to "add_box", new_course_path, class: "material-icons-round icon--additional" %>
+        </span>
+        <section class="grid--courses">
+            <% @courses.each do |course| %>
+                <%= render "layouts/partials/course", primary: "700", secondary: "200", accent: "400", course: course %>
+            <% end %>
+        </section>
+        <span class="section__title">
+            <i class="material-icons-round">calendar_month</i>
+            <p>Meine Termine</p>
+        </span>
+        <section class="grid--events">
+            <%= render "layouts/partials/event", primary: "700", secondary: "200", accent: "400" %>
+        </section>
+    </div>
+</body>

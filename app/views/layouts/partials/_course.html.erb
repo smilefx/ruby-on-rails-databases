@@ -1,0 +1,19 @@
+<div class="course bg--<%= primary%> color--<%= secondary%>" onclick="window.location.href = '<%= course_path(course) %>';">
+    <div>
+        <div class="course__title">
+            <h3><%= course.name %></h3>
+            <b class="color--<%= accent%>"><%= course.short_name %></b>
+        </div>
+        <div class="course__tags">
+            <div class="course__tag bg--<%= secondary%> color--<%= primary%>">
+                <%= course.period == 0 ? "SoSe" : "WiSe" %> <%= course.year %>
+            </div>
+            <div class="course__tag bg--<%= secondary%> color--<%= primary%>">
+                <%= course.semester %>. Semester
+            </div>
+        </div>
+    </div>
+    <div class="course__todo bg--<%= accent%> color--<%= primary%>">
+        <%= course.events.length %>
+    </div>
+</div>

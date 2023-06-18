@@ -1,0 +1,32 @@
+<body class="bg--500">
+    <%= render "layouts/header", logo: "light", domain: @domain %>
+
+    <div class="content">
+        <div class="card">
+            <div class="card__info button--icon bg--400 color--200">
+                <i class="material-icons-round">search</i>
+            </div>
+            <div class="card__body color--200">
+                <div class="card__title"><%= params[:search] %></div>
+                <div class="card__subtitle">Deine Suchergebnisse</div>
+            </div>
+        </div>
+
+        <span class="section__title">
+            <i class="material-icons-round">school</i>
+            <p>Gefundene Kurse</p>
+        </span>
+        <section class="grid--courses">
+            <% @courses.each do |course| %>
+                <%= render "layouts/partials/course", primary: "400", secondary: "200", accent: "200", course: course %>
+            <% end %>
+        </section>
+        <span class="section__title">
+            <i class="material-icons-round">calendar_month</i>
+            <p>Gefundene Termine</p>
+        </span>
+        <section class="grid--events">
+            <%= render "layouts/partials/event", primary: "400", secondary: "200", accent: "200" %>
+        </section>
+    </div>
+</body>
