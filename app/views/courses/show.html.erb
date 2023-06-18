@@ -61,8 +61,12 @@
             <%= link_to "add_box", new_course_event_path(@course), class: "material-icons-round icon--additional" %>
         </span>
         <section class="grid--events">
-            <% @course.events.each do |event| %>
-                <%= render "layouts/partials/event", primary: "800", secondary: "200", accent: "400", event: event %>
+            <% if @events.length > 0 %>
+                <% @events.each do |event| %>
+                    <%= render "layouts/partials/event", primary: "800", secondary: "200", accent: "400", event: event %>
+                <% end %>
+            <% else %>
+                <div class="section__empty span--4 bg--800 color--200">Es wurden keine anstehenden Termine gefunden.</div>
             <% end %>
         </section>
     </div>

@@ -5,7 +5,7 @@ class Event < ApplicationRecord
   VALID_STATUSES = ['Ausstehend', 'In Arbeit', 'Erledigt']
   validates :status, inclusion: { in: VALID_STATUSES }
   validates :title, presence: { message: "Titel muss angegeben werden." }
-  validates :date, presence: { message: "Datum muss angegeben werden." }, comparison: { greater_than_or_equal_to: Date.today, message: "Datum muss in der Zukunft liegen." }
+  validates :date, presence: { message: "Datum muss angegeben werden." }
   validates :time, presence: { message: "Uhrzeit muss angegeben werden." }
 
   default_scope { order(date: :asc, time: :asc) }

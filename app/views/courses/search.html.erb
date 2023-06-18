@@ -17,8 +17,12 @@
             <p>Gefundene Kurse</p>
         </span>
         <section class="grid--courses">
-            <% @courses.each do |course| %>
-                <%= render "layouts/partials/course", primary: "400", secondary: "200", accent: "200", course: course %>
+            <% if @courses.length > 0 %>
+                <% @courses.each do |course| %>
+                    <%= render "layouts/partials/course", primary: "400", secondary: "200", accent: "200", course: course %>
+                <% end %>
+            <% else %>
+                <div class="section__empty span--2 bg--400 color--200">Es wurden keine passenden Kurse gefunden.</div>
             <% end %>
         </section>
         <span class="section__title">
@@ -26,8 +30,12 @@
             <p>Gefundene Termine</p>
         </span>
         <section class="grid--events">
-            <% @events.each do |event| %>
-                <%= render "layouts/partials/event", primary: "400", secondary: "200", accent: "200", event: event %>
+            <% if @events.length > 0 %>
+                <% @events.each do |event| %>
+                    <%= render "layouts/partials/event", primary: "400", secondary: "200", accent: "200", event: event %>
+                <% end %>
+            <% else %>
+                <div class="section__empty span--4 bg--400 color--200">Es wurden keine passenden Termine gefunden.</div>
             <% end %>
         </section>
     </div>

@@ -16,8 +16,12 @@
             <%= link_to "add_box", new_course_path, class: "material-icons-round icon--additional" %>
         </span>
         <section class="grid--courses">
-            <% @courses.each do |course| %>
-                <%= render "layouts/partials/course", primary: "700", secondary: "200", accent: "400", course: course %>
+            <% if @courses.length > 0 %>
+                <% @courses.each do |course| %>
+                    <%= render "layouts/partials/course", primary: "700", secondary: "200", accent: "400", course: course %>
+                <% end %>
+            <% else %>
+                <div class="section__empty span--2 bg--700 color--200">Du belegst atuell keine Kurse.</div>
             <% end %>
         </section>
         <span class="section__title">
@@ -25,8 +29,12 @@
             <p>Meine Termine</p>
         </span>
         <section class="grid--events">
-            <% @events.each do |event| %>
-                <%= render "layouts/partials/event", primary: "700", secondary: "200", accent: "400", event: event %>
+            <% if @events.length > 0 %>
+                <% @events.each do |event| %>
+                    <%= render "layouts/partials/event", primary: "700", secondary: "200", accent: "400", event: event %>
+                <% end %>
+            <% else %>
+                <div class="section__empty span--4 bg--700 color--200">Du hast atuell keine Termine.</div>
             <% end %>
         </section>
     </div>
