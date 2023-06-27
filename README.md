@@ -3,10 +3,11 @@
 Installation des Projekts:
 
 ```shell
+# Optional:
 gem install rails
 gem install sqlite3
-bundle install --gemfile
-rake db:create
-rails db:migrate
+
+# Notwendig:
+bundle install --gemfile Gemfile
 rails server
 ```
