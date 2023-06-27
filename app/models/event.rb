@@ -11,16 +11,14 @@ class Event < ApplicationRecord
   default_scope { order(date: :asc, time: :asc) }
 
   def named_date
-    @months = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
-    self.date.strftime("%d. ") + @months[self.date.month - 1] + self.date.strftime(" %Y")
+    I18n.l(self.date, format: "%d. %B %Y")
   end
 
   def named_date_day
-    @days = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"]
-    @days[self.date.wday] + ", " + self.named_date
+    I18n.l(self.date, format: "%A, %d. %B %Y")
   end
 
   def named_time
-    self.time.strftime("%H:%M") + " Uhr"
+    I18n.l(self.time, format: "%H:%M Uhr")
   end
 end
