@@ -28,7 +28,7 @@ class CoursesController < ApplicationController
   # · Der Aktionsaufruf erfolgt über die URL "/courses/:id"
 
   def show
-    @course = nil
+    @course = Course.find(params[:id])
 
     # Hier drunter muss nichts geändert werden
     if @course.nil?

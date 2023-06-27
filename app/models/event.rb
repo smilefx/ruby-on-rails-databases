@@ -27,7 +27,7 @@ class Event < ApplicationRecord
     # · Ersetze dafür alles innerhalb der Methode "named_date"
 
     def named_date
-        self.date.to_s
+        I18n.l(self.date, format: "%d. %B %Y")
     end
 
     # ======================================

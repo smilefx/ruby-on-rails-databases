@@ -23,7 +23,8 @@ class Course < ApplicationRecord
     # · Ergänze das Kürzel um eine Validierung, damit dieses maximal 10 Zeichen lang sein darf
     # · Füge beiden Validierungen eine eigene Fehlermeldung hinzu, die bei einem Fehler angezeigt wird
 
-    validates :short_name, presence: true
+    validates :short_name, presence: { message: "Kürzel muss angegeben werden." }
+    validates :short_name, length: { maximum: 10, message: "Kürzel darf maximal 10 Zeichen lang sein." }
 
     # ======================================
 
