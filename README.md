@@ -1,24 +1,12 @@
-# README
+# Ruby on Rails - Datenbanken
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Installation des Projekts:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```shell
+gem install rails
+gem install sqlite3
+bundle install --gemfile
+rake db:create
+rails db:migrate
+rails server
+```
